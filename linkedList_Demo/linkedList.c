@@ -53,7 +53,10 @@ struct node* insert(struct node* list, int value)
 		current = current->next;
 
 	}
-	
+
+	//If at this point, we have not inserted the value, then it must go at the very end
+	current->next = toInsert;
+	toInsert->next = NULL;
 	return list;
 	
 };
@@ -64,6 +67,41 @@ struct node* delete(struct node* list, int value)
 	//list should have the head of the linked list
 	//value is the value to be deleted: loop through the entire list looking for value
 	//Once found, free the memory and change around the pointers
+	
+
+	struct node* previous;
+	previous = malloc(sizeof(struct node));
+	previous = list;
+
+	struct node* current;
+	current = malloc(sizeof(struct node));
+	current = list;
+
+	while (current->next != NULL) {
+		if (current -> data == value) {
+		//If the item to delete is the first in the list
+			if (current == previous) {
+				list = current->next;
+				free (current);
+				return list;
+			} else {
+				previous->next = current -> next;
+				free (current);
+				return list;
+			}
+			//Move along the linked list
+		}
+		previous = current;
+		current = current->next;
+
+	}
+	//At this point we still have not checked the last value. Do that now
+	if (current -> data == value) {
+		previous->next = current -> next;
+		free (current);
+		return list;
+	}
+	
 	return list;
 
 };
