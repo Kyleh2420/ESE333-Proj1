@@ -13,6 +13,41 @@ struct node
 struct node* insert(struct node* list, int value)
 {
 	//Put your code here
+	//Store the head somewhere
+	//We will search the linked list for the proper place to put value, then insert it.
+	//When found, note the pointer. This pointer becomes the inserted values next. 
+	//Will return the head of the entire list
+	struct node* previous;
+	previous = malloc(sizeof(struct node));
+	previous = list;
+
+	struct node* current;
+	current = malloc(sizeof(struct node));
+	current = list;
+	
+	struct node* toInsert;
+	toInsert = malloc(sizeof(struct node));
+	toInsert->data = value;
+
+	while (current->next != NULL) {
+		printf("Current value: %d \n", current-> data);
+		if (current->data > value) {
+			//If these two are the same, we are at the very beginning of the list
+			if (current == previous) {
+				list = toInsert;
+				toInsert->next = current;
+				previous = toInsert;
+			} else {
+				previous->next = toInsert;
+				toInsert->next = current;
+			}
+			return list;
+		}
+		previous = current;
+		current = current->next;
+
+	}
+	
 	return list;
 	
 };
@@ -20,6 +55,9 @@ struct node* insert(struct node* list, int value)
 struct node* delete(struct node* list, int value)
 {
 	//Put your code here
+	//list should have the head of the linked list
+	//value is the value to be deleted: loop through the entire list looking for value
+	//Once found, free the memory and change around the pointers
 	return list;
 
 };
