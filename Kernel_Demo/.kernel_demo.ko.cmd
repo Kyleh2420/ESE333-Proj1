@@ -1,1 +1,0 @@
-cmd_/home/ese333/ESE333/Proj1/Kernel_Demo/kernel_demo.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -z noexecstack   --build-id  -T ./scripts/module-common.lds -o /home/ese333/ESE333/Proj1/Kernel_Demo/kernel_demo.ko /home/ese333/ESE333/Proj1/Kernel_Demo/kernel_demo.o /home/ese333/ESE333/Proj1/Kernel_Demo/kernel_demo.mod.o;  true
